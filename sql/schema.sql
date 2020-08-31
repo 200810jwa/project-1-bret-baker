@@ -52,7 +52,7 @@ CREATE TABLE project1.ers_reimbursement (
 );
 
 -- seed 1
-INSERT INTO project1.ers_user_roles (user_role) VALUES ('finance manager');
+INSERT INTO project1.ers_user_roles (user_role) VALUES ('manager');
 INSERT INTO project1.ers_user_roles (user_role) VALUES ('employee');
 
 -- seed 2
@@ -73,7 +73,7 @@ INSERT INTO project1.ers_users (ers_username, ers_password, user_first_name, use
 -- seed 5
 INSERT INTO project1.ers_reimbursement (reimb_amount, reimb_description, reimb_author, reimb_resolver, reimb_status_id, reimb_type_id) VALUES (100, 'flight to tampa for recruitment', 2, 1, 1, 2);
 
--- queries 1
+-- query 1
 SELECT * FROM project1.ers_reimbursement;
 SELECT * FROM project1.ers_users;
 SELECT * FROM project1.ers_reimbursement_status;
