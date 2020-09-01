@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Reimbursement System</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css"
+	integrity="sha384-qF/QmIAj5ZaYFAeQcrQ6bfVMAh4zZlrGwTPY7T/M+iTTLJqJBJjwwnsE5Y0mV7QK"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body class="bg-light">
+
+	<nav class="px-3 py-3 mb-5 bg-primary">
+		<h4 class="mb-0 d-inline text-white">Expense Reimbursement System</h4>
+		<a class="float-right cursor-pointer" href="index.html">Logout</a>
+	</nav>
+	
+	<div class="container">
+		<div class="px-3 pt-3 pb-4 border rounded border-primary">
+			<h2 id="emp-header" class="text-center text-primary mb-4">Employee Dashboard</h2>
+			<div class="text-center">
+				<button id="view-past-tickets-btn" class="btn-lg btn-success mb-3">View Past Tickets</button>
+			</div>
+			<div class="text-center">
+				<button id="add-reimb-request-btn" class="btn-lg btn-success">Add Reimbursement Request</button>
+			</div>
+			<form id="add-reimb-request-form" class="px-3">
+				<div class="form-group">
+					<label for="amount">Amount</label> <input type="text"
+						name="amount" class="form-control" placeholder="Amount">
+				</div>
+				<div class="form-group">
+					<label for="description">Description</label> <textarea type="text"
+						name="description" class="form-control" rows="3" placeholder="Max 250 Characters" maxlength="250"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="receipt">Receipt</label> <input type="text"
+						name="receipt" class="form-control" placeholder="Receipt">
+				</div>
+				<h6 class="mb-3">Type</h6>
+				<div class="form-group">
+					<input type="radio" name="type" class="cursor-pointer"> <label
+						for="loding">Lodging</label>
+				</div>
+				<div class="form-group">
+					<input type="radio" name="type" class="cursor-pointer"> <label
+						for="travel">Travel</label>
+				</div>
+				<div class="form-group">
+					<input type="radio" name="type" class="cursor-pointer"> <label
+						for="food">Food</label>
+				</div>
+				<div class="form-group">
+					<input type="radio" name="type" class="cursor-pointer"> <label
+						for="other">Other</label>
+				</div>
+				<div class="text-center">
+					<button class="btn btn-success">Submit</button>
+				</div>
+			</form>
+		</div>
+		<table id="reimb-table-e" class="table mt-3">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Amount</th>
+					<th scope="col">Submitted</th>
+					<th scope="col">Resolved</th>
+					<th scope="col">Description</th>
+					<th scope="col">Receipt</th>
+					<th scope="col">Author</th>
+					<th scope="col">Resolver</th>
+					<th scope="col">Status ID</th>
+					<th scope="col">Type ID</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="cursor-pointer reimb-row">
+					<th scope="col">ID</th>
+					<th scope="col">Amount</th>
+					<th scope="col">Submitted</th>
+					<th scope="col">Resolved</th>
+					<th scope="col">Description</th>
+					<th scope="col">Receipt</th>
+					<th scope="col">Author</th>
+					<th scope="col">Resolver</th>
+					<th scope="col">Status ID</th>
+					<th scope="col">Type ID</th>
+				</tr>
+				<tr class="cursor-pointer reimb-row">
+					<th scope="col">ID</th>
+					<th scope="col">Amount</th>
+					<th scope="col">Submitted</th>
+					<th scope="col">Resolved</th>
+					<th scope="col">Description</th>
+					<th scope="col">Receipt</th>
+					<th scope="col">Author</th>
+					<th scope="col">Resolver</th>
+					<th scope="col">Status ID</th>
+					<th scope="col">Type ID</th>
+				</tr>
+				<tr class="cursor-pointer reimb-row">
+					<th scope="col">ID</th>
+					<th scope="col">Amount</th>
+					<th scope="col">Submitted</th>
+					<th scope="col">Resolved</th>
+					<th scope="col">Description</th>
+					<th scope="col">Receipt</th>
+					<th scope="col">Author</th>
+					<th scope="col">Resolver</th>
+					<th scope="col">Status ID</th>
+					<th scope="col">Type ID</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+	<script src="../javascript/script1.js"></script>
+</body>
+</html>
