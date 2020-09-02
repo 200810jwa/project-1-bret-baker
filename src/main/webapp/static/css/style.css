@@ -9,12 +9,3 @@ a:hover {
 .reimb-row:hover {
 	background-color: rgba(128,128,128,0.5);
 }
-
-#reimb-table-m,
-#reimb-table-e {
-	display: none;
-}
-
-#add-reimb-request-form {
-	display: none;
-}
