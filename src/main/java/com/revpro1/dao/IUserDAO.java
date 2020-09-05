@@ -1,9 +1,12 @@
 package com.revpro1.dao;
 
+import java.util.List;
+
 import com.revpro1.models.User;
 
 public interface IUserDAO {
 	
-	public User getByUsername(String username);
+	public List<User> getByUsername(String username);
+	public User getById(int id);
 
 }

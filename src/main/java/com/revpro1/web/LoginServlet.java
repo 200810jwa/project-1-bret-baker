@@ -18,7 +18,7 @@ import com.revpro1.services.LoginService;
 
 public class LoginServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+//	private static final long serialVersionUID = 1L;
 	private ObjectMapper objectMapper = new ObjectMapper();
 	private LoginService loginService = new LoginService();
 	
@@ -43,13 +43,7 @@ public class LoginServlet extends HttpServlet {
 			// Store this employee object on the backend/server corresponding to this session
 			session.setAttribute("currentUser", user);
 			ResponseUtil.writeJSON(response, user);
-			System.out.println(user.toString());
-			
-//			if (user.getRoleId() == 1) {
-//				request.getRequestDispatcher("/project-1-bret-baker/static/mandash.html").forward(request, response);
-//			} else if (user.getRoleId() == 2) {
-//				request.getRequestDispatcher("/project-1-bret-baker/static/empdash.html").forward(request, response);
-//			}
+//			System.out.println(user.toString());
 			
 		}
 	}

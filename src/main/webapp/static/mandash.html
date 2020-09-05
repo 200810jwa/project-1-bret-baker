@@ -13,17 +13,17 @@
 <body class="bg-light">
 
 	<nav class="px-3 py-3 mb-5 bg-primary">
-		<h4 class="mb-0 d-inline text-white">Expense Reimbursement System</h4>
+		<h4 id="nav-header" class="mb-0 d-inline text-white">Expense Reimbursement System</h4>
 		<a class="float-right cursor-pointer" href="index.html">Logout</a>
 	</nav>
 
 	<div class="container">
 		<div class="px-3 pt-3 pb-4 border rounded border-primary">
-			<h2 class="text-center text-primary mb-4">Manager
+			<h2 class="text-center text-primary border-bottom pb-3 border-secondary">Manager
 				Dashboard</h2>
 			<div class="text-center">
 				<a href="reimbursements.html">
-					<button class="btn-lg btn-success">View
+					<button class="btn-lg btn-success my-4">View
 						All Reimbursements</button>
 				</a>
 			</div>
@@ -41,5 +41,25 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 		crossorigin="anonymous"></script>
+	<script>
+		window.onload = async function() {
+			console.log(sessionStorage.currentUser);
+			let username = sessionStorage.currentUser;
+			
+			try {
+				let response = await fetch("http://localhost:8080/project-1-bret-baker/hello/s?ers_username=" + username);
+				let resp = await response.json();
+				console.log(resp);
+				let name = await resp.split('');
+				name[0] = await name[0].toUpperCase();
+				name = await name.join('');
+				document.getElementById("nav-header").innerHTML = "Hello, " + name;
+			} catch(error) {
+				// Failed to login
+				console.log(error);
+				// alert("Failed to login");
+			}
+		}
+	</script>
 </body>
 </html>

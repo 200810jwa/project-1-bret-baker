@@ -62,7 +62,7 @@
 						})
 					});
 					let resp = await response.json();
-					sessionStorage.setItem("currentUser", JSON.stringify(resp.username));
+					sessionStorage.setItem("currentUser", resp.username);
 					usernameInput.value = '';
 					passwordInput.value = '';
 					// window.location.href = "http://localhost:8080/project-1-bret-baker/";
