@@ -36,7 +36,7 @@ public class ReimbServlet extends HttpServlet {
 		
 		else {
 			
-			System.out.println("arraylist of reimbs = " + reimbs.toString());
+//			System.out.println("arraylist of reimbs = " + reimbs.toString());
 
 			ResponseUtil.writeJSON(response, reimbs);
 			

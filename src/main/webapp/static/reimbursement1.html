@@ -15,6 +15,7 @@
 	<nav class="px-3 py-3 mb-5 bg-primary">
 		<h4 id="nav-header" class="mb-0 d-inline text-white">ERS |</h4>
 		<a class="float-right cursor-pointer" href="index.html" onclick="logout()">Logout</a>
+		<a class="float-right cursor-pointer mr-3" href="viewpasttickets.html">Tickets</a>
 		<a class="float-right cursor-pointer mr-3" href="mandash.html">Dashboard</a>
 	</nav>
 
@@ -34,11 +35,6 @@
         <h5 class="card-title mb-3"><strong>Author: </strong><span id="reimbAuthor"></span></h5>
         <h5 class="card-title mb-3"><strong>Status: </strong><span id="reimbStatus"></span></h5>
         <h5 class="card-title mb-3"><strong>Type: </strong><span id="reimbType"></span></h5>
-        <hr>
-        <div class="text-center">
-          <button class="btn btn-success w-25 mr-5" onclick="approve()">Approve</button>
-          <button class="btn btn-danger w-25" onclick="deny()">Deny</button>
-        </div>
       </div>
     </div>
 	</div>
@@ -77,34 +73,6 @@
 				document.getElementById("reimbAuthor").innerHTML = res.author;
 				document.getElementById("reimbStatus").innerHTML = res.statusId;
 				document.getElementById("reimbType").innerHTML = res.typeId;
-			} catch(error) {
-				console.error(error);
-			}
-		}
-		
-		async function approve() {
-			try {
-				let reimb = sessionStorage.currentReimb;
-				let response = await fetch("http://localhost:8080/project-1-bret-baker/reimb-approve/s?reimb_id=" + reimb, {
-					method: "PUT"
-				});
-				if (response) {
-					window.location.href = "http://localhost:8080/project-1-bret-baker/static/reimbursements.html";
-				}
-			} catch(error) {
-				console.error(error);
-			}
-		}
-		
-		async function deny() {
-			try {
-				let reimb = sessionStorage.currentReimb;
-				let response = await fetch("http://localhost:8080/project-1-bret-baker/reimb-deny/s?reimb_id=" + reimb, {
-					method: "PUT"
-				});
-				if (response) {
-					window.location.href = "http://localhost:8080/project-1-bret-baker/static/reimbursements.html";
-				}
 			} catch(error) {
 				console.error(error);
 			}

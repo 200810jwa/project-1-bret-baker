@@ -13,13 +13,14 @@
 <body class="bg-light">
 
 	<nav class="px-3 py-3 mb-5 bg-primary">
-		<h4 class="mb-0 d-inline text-white">Expense Reimbursement System</h4>
-		<a class="float-right cursor-pointer" href="index.html">Logout</a>
+		<h4 id="nav-header" class="mb-0 d-inline text-white">ERS |</h4>
+		<a class="float-right cursor-pointer" href="index.html" onclick="logout()">Logout</a>
+		<a class="float-right cursor-pointer mr-3" href="empdash.html">Dashboard</a>
 	</nav>
 	
 	<div class="container">
-		<div class="px-3 py-3 border rounded border-primary">
-			<h2 class="text-center text-primary mb-0">Past Reimbursement Tickets</h2>
+		<div class="px-3 py-3 border-bottom border-secondary">
+			<h2 class="text-center text-primary mb-0">Reimbursement Tickets</h2>
 		</div>
 		<table class="table mt-3">
 			<thead class="thead-dark">
@@ -29,50 +30,13 @@
 					<th scope="col">Submitted</th>
 					<th scope="col">Resolved</th>
 					<th scope="col">Description</th>
-					<th scope="col">Receipt</th>
 					<th scope="col">Author</th>
 					<th scope="col">Resolver</th>
 					<th scope="col">Status ID</th>
 					<th scope="col">Type ID</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr class="cursor-pointer reimb-row">
-					<th scope="col">ID</th>
-					<th scope="col">Amount</th>
-					<th scope="col">Submitted</th>
-					<th scope="col">Resolved</th>
-					<th scope="col">Description</th>
-					<th scope="col">Receipt</th>
-					<th scope="col">Author</th>
-					<th scope="col">Resolver</th>
-					<th scope="col">Status ID</th>
-					<th scope="col">Type ID</th>
-				</tr>
-				<tr class="cursor-pointer reimb-row">
-					<th scope="col">ID</th>
-					<th scope="col">Amount</th>
-					<th scope="col">Submitted</th>
-					<th scope="col">Resolved</th>
-					<th scope="col">Description</th>
-					<th scope="col">Receipt</th>
-					<th scope="col">Author</th>
-					<th scope="col">Resolver</th>
-					<th scope="col">Status ID</th>
-					<th scope="col">Type ID</th>
-				</tr>
-				<tr class="cursor-pointer reimb-row">
-					<th scope="col">ID</th>
-					<th scope="col">Amount</th>
-					<th scope="col">Submitted</th>
-					<th scope="col">Resolved</th>
-					<th scope="col">Description</th>
-					<th scope="col">Receipt</th>
-					<th scope="col">Author</th>
-					<th scope="col">Resolver</th>
-					<th scope="col">Status ID</th>
-					<th scope="col">Type ID</th>
-				</tr>
+			<tbody id="table-bod">
 			</tbody>
 		</table>
 	</div>
@@ -88,5 +52,66 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 		crossorigin="anonymous"></script>
+	<script>
+		async function getReimb(id) {
+			// console.log(id);
+			let response = await fetch("http://localhost:8080/project-1-bret-baker/reimb-review/s?reimb_id=" + id);
+			let res = await response.json();
+			// console.log(res);
+			sessionStorage.setItem("currentReimb", res.id);
+			window.location.href = "http://localhost:8080/project-1-bret-baker/static/reimbursement1.html";
+		};
+		
+		window.onload = async function() {
+			// console.log("working");
+			try {
+				// console.log(sessionStorage.currentUser);
+				let username = sessionStorage.currentUser;
+				let r = await fetch("http://localhost:8080/project-1-bret-baker/hello/s?ers_username=" + username);
+				let name = await r.json();
+				// console.log(resp);
+				// let name = await resp.split('');
+				// name[0] = await name[0].toUpperCase();
+				// name = await name.join('');
+				document.getElementById("nav-header").innerHTML = "ERS | Hello, " + name;
+				let response = await fetch("http://localhost:8080/project-1-bret-baker/reimbs-by-author/s?author=" + username);
+				let resp = await response.json();
+				// console.log(resp);
+				for (let i = 0; i < resp.length; i++) {
+					let row = document.getElementById("table-bod").insertRow();
+					row.insertCell(0).innerHTML = resp[i].id;
+					row.insertCell(1).innerHTML = resp[i].amount;
+					row.insertCell(2).innerHTML = resp[i].submitted;
+					row.insertCell(3).innerHTML = resp[i].resolved;
+					row.insertCell(4).innerHTML = resp[i].description;
+					row.insertCell(5).innerHTML = resp[i].author;
+					row.insertCell(6).innerHTML = resp[i].resolver;
+					row.insertCell(7).innerHTML = resp[i].statusId;
+					row.insertCell(8).innerHTML = resp[i].typeId;
+					if (resp[i].statusId === 1) {
+						row.classList.add("table-warning");
+					} else if (resp[i].statusId === 2) {
+						row.classList.add("table-success");
+					} else if (resp[i].statusId === 3) {
+						row.classList.add("table-danger");
+					}
+					row.classList.add("border-bottom");
+					row.classList.add("border-secondary");
+					row.classList.add("cursor-pointer");
+					row.classList.add("reimb-row");
+					// row.setAttribute("value", resp[i].id);
+					row.setAttribute("onclick", "getReimb(" + resp[i].id + ")");
+				}
+			} catch(error) {
+				// Failed to login
+				console.log(error);
+				// alert("Failed to login");
+			}
+		}
+		
+		function logout() {
+			sessionStorage.clear();
+		}
+	</script>
 </body>
 </html>

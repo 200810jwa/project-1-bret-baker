@@ -46,38 +46,37 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 		crossorigin="anonymous"></script>
-		<!-- <script src="../javascript/index.js"></script> -->
-		<script>
-			async function sendLogin(e) {
-				let usernameInput = document.getElementById("username");
-				let passwordInput = document.getElementById("password");
-	
-				try {
-					let response = await fetch("http://localhost:8080/project-1-bret-baker/login", {
-						method: 'POST',
-						credentials: 'include',
-						body: JSON.stringify({
-							username: usernameInput.value,
-							password: passwordInput.value
-						})
-					});
-					let resp = await response.json();
-					sessionStorage.setItem("currentUser", resp.username);
-					usernameInput.value = '';
-					passwordInput.value = '';
-					// window.location.href = "http://localhost:8080/project-1-bret-baker/";
-					if (resp.roleId === 1) {
-						window.location.href = "http://localhost:8080/project-1-bret-baker/static/mandash.html";
-					} else if (resp.roleId === 2) {
-						window.location.href = "http://localhost:8080/project-1-bret-baker/static/empdash.html";
-					}
-				} catch(error) {
-					// Failed to login
-					console.log(error);
-					alert("Failed to login");
+	<script>
+		async function sendLogin() {
+			let usernameInput = document.getElementById("username");
+			let passwordInput = document.getElementById("password");
+
+			try {
+				let response = await fetch("http://localhost:8080/project-1-bret-baker/login", {
+					method: 'POST',
+					credentials: 'include',
+					body: JSON.stringify({
+						username: usernameInput.value,
+						password: passwordInput.value
+					})
+				});
+				let resp = await response.json();
+				sessionStorage.setItem("currentUser", resp.username);
+				usernameInput.value = '';
+				passwordInput.value = '';
+				// window.location.href = "http://localhost:8080/project-1-bret-baker/";
+				if (resp.roleId === 1) {
+					window.location.href = "http://localhost:8080/project-1-bret-baker/static/mandash.html";
+				} else if (resp.roleId === 2) {
+					window.location.href = "http://localhost:8080/project-1-bret-baker/static/empdash.html";
 				}
+			} catch(error) {
+				// Failed to login
+				console.log(error);
+				alert("Failed to login");
 			}
-			
-		</script>
+		}
+		
+	</script>
 </body>
 </html>

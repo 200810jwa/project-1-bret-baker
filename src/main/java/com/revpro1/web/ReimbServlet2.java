@@ -12,30 +12,34 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revpro1.models.Reimbursement;
 import com.revpro1.models.User;
 import com.revpro1.models.templates.LoginTemplate;
 import com.revpro1.utils.ResponseUtil;
 import com.revpro1.services.HelloService;
 import com.revpro1.services.LoginService;
+import com.revpro1.services.ReimbServices;
 
-public class HelloServlet extends HttpServlet {
+public class ReimbServlet2 extends HttpServlet {
 
-	private HelloService helloService = new HelloService();
+	private ReimbServices reimbServices = new ReimbServices();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String author = request.getParameter("author");
 		
-		String username = request.getParameter("ers_username");
+		List<Reimbursement> reimbs = reimbServices.getByAuthor(author);
 		
-		List<User> user = helloService.hello(username);
-		
-		if(user == null) {
+		if(reimbs == null) {
 //			throw exception
 			response.setStatus(400);
 		} 
 		
 		else {
+			
+//			System.out.println("arraylist of reimbs = " + reimbs.toString());
 
-			ResponseUtil.writeJSON(response, user.get(0).getFirstName());
+			ResponseUtil.writeJSON(response, reimbs);
 			
 		}
 	}

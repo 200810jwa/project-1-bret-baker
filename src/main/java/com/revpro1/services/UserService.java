@@ -6,11 +6,11 @@ import java.util.List;
 
 import com.revpro1.dao.UserDAO;
 
-public class HelloService {
+public class UserService {
 	
 	private UserDAO userDao = new UserDAO();
 	
-	public List<User> hello(String username) {
+	public List<User> getUser(String username) {
 		
 		List<User> user = userDao.getByUsername(username);
 		

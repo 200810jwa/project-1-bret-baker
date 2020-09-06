@@ -13,20 +13,21 @@
 <body class="bg-light">
 
 	<nav class="px-3 py-3 mb-5 bg-primary">
-		<h4 class="mb-0 d-inline text-white">Expense Reimbursement System</h4>
-		<a class="float-right cursor-pointer" href="index.html">Logout</a>
+		<h4 id="nav-header" class="mb-0 d-inline text-white">ERS |</h4>
+		<a class="float-right cursor-pointer" href="index.html" onclick="logout()">Logout</a>
+		<a class="float-right cursor-pointer mr-3" href="empdash.html">Dashboard</a>
 	</nav>
 	
 	<div class="container">
 		<div class="px-3 py-3 border rounded border-primary">
 			<h2 class="text-center text-primary mb-4">Add Reimbursement Request</h2>
-			<form class="px-3">
+			<form class="px-3" onsubmit="return false;">
 				<div class="form-group">
-					<label for="amount">Amount</label> <input type="text"
+					<label for="amount">Amount</label> <input id="amount" type="text"
 						name="amount" class="form-control" placeholder="Amount">
 				</div>
 				<div class="form-group">
-					<label for="description">Description</label> <textarea type="text"
+					<label for="description">Description</label> <textarea id="description" type="text"
 						name="description" class="form-control" rows="3" placeholder="Max 250 Characters" maxlength="250"></textarea>
 				</div>
 				<div class="form-group">
@@ -35,23 +36,23 @@
 				</div>
 				<h6 class="mb-3">Type</h6>
 				<div class="form-group">
-					<input type="radio" name="type" class="cursor-pointer"> <label
-						for="loding">Lodging</label>
+					<input type="radio" name="type" value="1" class="cursor-pointer"> <label
+						for="lodging">Lodging</label>
 				</div>
 				<div class="form-group">
-					<input type="radio" name="type" class="cursor-pointer"> <label
+					<input type="radio" name="type" value="2" class="cursor-pointer"> <label
 						for="travel">Travel</label>
 				</div>
 				<div class="form-group">
-					<input type="radio" name="type" class="cursor-pointer"> <label
+					<input type="radio" name="type" value="3" class="cursor-pointer"> <label
 						for="food">Food</label>
 				</div>
 				<div class="form-group">
-					<input type="radio" name="type" class="cursor-pointer"> <label
+					<input type="radio" name="type" value="4" class="cursor-pointer"> <label
 						for="other">Other</label>
 				</div>
 				<div class="text-center">
-					<button class="btn btn-success">Submit</button>
+					<button class="btn btn-success" onclick="addReimb()">Submit</button>
 				</div>
 			</form>
 		</div>
@@ -68,5 +69,75 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 		crossorigin="anonymous"></script>
+	<script>
+		window.onload = async function() {
+			try {
+				// console.log(sessionStorage.currentUser);
+				let username = sessionStorage.currentUser;
+				let response = await fetch("http://localhost:8080/project-1-bret-baker/hello/s?ers_username=" + username);
+				let name = await response.json();
+				// console.log(resp);
+				// let name = await resp.split('');
+				// name[0] = await name[0].toUpperCase();
+				// name = await name.join('');
+				document.getElementById("nav-header").innerHTML = "ERS | Hello, " + name;
+			} catch(error) {
+				// Failed to login
+				console.log(error);
+				// alert("Failed to login");
+			}
+		}
+		
+		async function addReimb() {
+			try {
+				let amountInput = document.getElementById("amount");
+				let descriptionInput = document.getElementById("description");
+				let typeInput = await getRadioInput();
+				let username = sessionStorage.currentUser;
+				let response = await fetch("http://localhost:8080/project-1-bret-baker/user/s?ers_username=" + username);
+				let resp = await response.json();
+				let author = resp.id;
+				let res = await fetch("http://localhost:8080/project-1-bret-baker/add-reimb", {
+					method: 'POST',
+					credentials: 'include',
+					body: JSON.stringify({
+						amount: amountInput.value,
+						description: descriptionInput.value,
+						author: author,
+						type: typeInput
+					})
+				});
+				amountInput.value = '';
+				descriptionInput.value = '';
+				clearRadioInput();
+				alert("Success: Ticket submitted")
+				window.location.href = "http://localhost:8080/project-1-bret-baker/static/empdash.html";
+			} catch(error) {
+				// Failed to login
+				console.log(error);
+				alert("Error: Failed to submit ticket");
+			}
+		}
+		
+		function getRadioInput() {
+			let e = document.getElementsByName("type");
+			for (let i = 0; i < e.length; i++) {
+				if (e[i].checked) {
+					return e[i].value;
+				}
+			}
+		}
+		
+		function clearRadioInput() {
+			let e = document.getElementsByName("type");
+			for (let i = 0; i < e.length; i++) {
+				e[i].checked = false;
+			}
+		}
+		
+		function logout() {
+			sessionStorage.clear();
+		}
+	</script>
 </body>
 </html>

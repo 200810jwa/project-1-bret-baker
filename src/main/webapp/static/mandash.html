@@ -13,8 +13,8 @@
 <body class="bg-light">
 
 	<nav class="px-3 py-3 mb-5 bg-primary">
-		<h4 id="nav-header" class="mb-0 d-inline text-white">Expense Reimbursement System</h4>
-		<a class="float-right cursor-pointer" href="index.html">Logout</a>
+		<h4 id="nav-header" class="mb-0 d-inline text-white">ERS |</h4>
+		<a class="float-right cursor-pointer" href="index.html" onclick="logout()">Logout</a>
 	</nav>
 
 	<div class="container">
@@ -43,22 +43,25 @@
 		crossorigin="anonymous"></script>
 	<script>
 		window.onload = async function() {
-			console.log(sessionStorage.currentUser);
-			let username = sessionStorage.currentUser;
-			
 			try {
+				// console.log(sessionStorage.currentUser);
+				let username = sessionStorage.currentUser;
 				let response = await fetch("http://localhost:8080/project-1-bret-baker/hello/s?ers_username=" + username);
-				let resp = await response.json();
-				console.log(resp);
-				let name = await resp.split('');
-				name[0] = await name[0].toUpperCase();
-				name = await name.join('');
-				document.getElementById("nav-header").innerHTML = "Hello, " + name;
+				let name = await response.json();
+				// console.log(resp);
+				// let name = await resp.split('');
+				// name[0] = await name[0].toUpperCase();
+				// name = await name.join('');
+				document.getElementById("nav-header").innerHTML = "ERS | Hello, " + name;
 			} catch(error) {
 				// Failed to login
 				console.log(error);
 				// alert("Failed to login");
 			}
+		}
+		
+		function logout() {
+			sessionStorage.clear();
 		}
 	</script>
 </body>

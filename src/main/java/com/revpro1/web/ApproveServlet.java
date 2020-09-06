@@ -12,30 +12,37 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revpro1.models.Reimbursement;
 import com.revpro1.models.User;
 import com.revpro1.models.templates.LoginTemplate;
 import com.revpro1.utils.ResponseUtil;
 import com.revpro1.services.HelloService;
 import com.revpro1.services.LoginService;
+import com.revpro1.services.ReimbServices;
 
-public class HelloServlet extends HttpServlet {
+public class ApproveServlet extends HttpServlet {
 
-	private HelloService helloService = new HelloService();
+	private ReimbServices reimbServices = new ReimbServices();
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String id = request.getParameter("reimb_id");
 		
-		String username = request.getParameter("ers_username");
+		int id1 = Integer.parseInt(id);
 		
-		List<User> user = helloService.hello(username);
+//		List<Reimbursement> reimbs = reimbServices.getById(id1);
+		boolean approve = reimbServices.approveById(id1);
 		
-		if(user == null) {
+		if(approve == false) {
 //			throw exception
 			response.setStatus(400);
 		} 
 		
 		else {
+			
+//			System.out.println("arraylist of reimbs = " + reimbs.toString());
 
-			ResponseUtil.writeJSON(response, user.get(0).getFirstName());
+			ResponseUtil.writeJSON(response, approve);
 			
 		}
 	}

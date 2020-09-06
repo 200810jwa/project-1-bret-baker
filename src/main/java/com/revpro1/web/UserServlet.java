@@ -17,16 +17,17 @@ import com.revpro1.models.templates.LoginTemplate;
 import com.revpro1.utils.ResponseUtil;
 import com.revpro1.services.HelloService;
 import com.revpro1.services.LoginService;
+import com.revpro1.services.UserService;
 
-public class HelloServlet extends HttpServlet {
-
-	private HelloService helloService = new HelloService();
+public class UserServlet extends HttpServlet {
+	
+	private UserService userService = new UserService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String username = request.getParameter("ers_username");
 		
-		List<User> user = helloService.hello(username);
+		List<User> user = userService.getUser(username);
 		
 		if(user == null) {
 //			throw exception
@@ -35,7 +36,7 @@ public class HelloServlet extends HttpServlet {
 		
 		else {
 
-			ResponseUtil.writeJSON(response, user.get(0).getFirstName());
+			ResponseUtil.writeJSON(response, user.get(0));
 			
 		}
 	}

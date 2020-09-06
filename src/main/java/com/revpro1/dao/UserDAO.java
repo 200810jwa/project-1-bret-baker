@@ -20,7 +20,7 @@ public class UserDAO implements IUserDAO {
 		
 		List<User> users = new ArrayList<>();
 		
-		System.out.println("getByUsername invoked with username = " + username);
+//		System.out.println("getByUsername invoked with username = " + username);
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
 
@@ -52,10 +52,10 @@ public class UserDAO implements IUserDAO {
 			closeResources();
 		}
 		
-		for(int i = 0; i < users.size(); i++) {
-			System.out.println("user at index " + i);
-			System.out.println(users.get(i));
-		}
+//		for(int i = 0; i < users.size(); i++) {
+//			System.out.println("user at index " + i);
+//			System.out.println(users.get(i));
+//		}
 
 		return users;
 
