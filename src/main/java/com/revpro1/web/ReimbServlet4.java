@@ -20,25 +20,19 @@ import com.revpro1.services.HelloService;
 import com.revpro1.services.LoginService;
 import com.revpro1.services.ReimbServices;
 
-public class DenyServlet extends HttpServlet {
+public class ReimbServlet4 extends HttpServlet {
 
 	private ReimbServices reimbServices = new ReimbServices();
 	
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String id = request.getParameter("reimb_id");
-		String resolverId = request.getParameter("reimb_resolver");
+		String statusId = request.getParameter("reimb_status_id");
 		
-//		System.out.println("id = " + id);
-//		System.out.println("resolverId = " + resolverId);
+		int id = Integer.parseInt(statusId);
 		
-		int id1 = Integer.parseInt(id);
-		int id2 = Integer.parseInt(resolverId);
+		List<Reimbursement> reimbs = reimbServices.getByStatus(id);
 		
-//		List<Reimbursement> reimbs = reimbServices.getById(id1);
-		boolean deny = reimbServices.denyById(id1, id2);
-		
-		if(deny == false) {
+		if(reimbs == null) {
 //			throw exception
 			response.setStatus(400);
 		} 
@@ -47,7 +41,7 @@ public class DenyServlet extends HttpServlet {
 			
 //			System.out.println("arraylist of reimbs = " + reimbs.toString());
 
-			ResponseUtil.writeJSON(response, deny);
+			ResponseUtil.writeJSON(response, reimbs);
 			
 		}
 	}

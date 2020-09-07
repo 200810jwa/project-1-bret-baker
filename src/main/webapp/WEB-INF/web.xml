@@ -84,6 +84,18 @@
 	
 	<servlet>
 		<description></description>
+		<display-name>ReimbServlet4</display-name>
+		<servlet-name>ReimbServlet4</servlet-name>
+		<servlet-class>com.revpro1.web.ReimbServlet4</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ReimbServlet4</servlet-name>
+		<url-pattern>/reimbs-by-status/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
 		<display-name>ApproveServlet</display-name>
 		<servlet-name>ApproveServlet</servlet-name>
 		<servlet-class>com.revpro1.web.ApproveServlet</servlet-class>
@@ -116,6 +128,18 @@
 	<servlet-mapping>
 		<servlet-name>UserServlet</servlet-name>
 		<url-pattern>/user/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>UserServlet1</display-name>
+		<servlet-name>UserServlet1</servlet-name>
+		<servlet-class>com.revpro1.web.UserServlet1</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserServlet1</servlet-name>
+		<url-pattern>/user-by-id/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>

@@ -39,9 +39,9 @@ public class ReimbServices {
 
 	}
 	
-	public boolean approveById(int id) {
+	public boolean approveById(int id, int resolverId) {
 
-		boolean approve = reimbDAO.approveById(id);
+		boolean approve = reimbDAO.approveById(id, resolverId);
 
 		if (approve == false) {
 //			throw exception
@@ -52,9 +52,9 @@ public class ReimbServices {
 
 	}
 	
-	public boolean denyById(int id) {
+	public boolean denyById(int id, int resolverId) {
 
-		boolean deny = reimbDAO.denyById(id);
+		boolean deny = reimbDAO.denyById(id, resolverId);
 
 		if (deny == false) {
 //			throw exception
@@ -92,6 +92,19 @@ public class ReimbServices {
 		}
 		
 		
+	}
+	
+	public List<Reimbursement> getByStatus(int statusId) {
+		
+		List<Reimbursement> reimbs = reimbDAO.getByStatusId(statusId);
+
+		if (reimbs == null) {
+//			throw exception
+			return null;
+		}
+
+		return reimbs;
+
 	}
 
 }

@@ -14,13 +14,24 @@
 
 	<nav class="px-3 py-3 mb-5 bg-primary">
 		<h4 id="nav-header" class="mb-0 d-inline text-white">ERS |</h4>
-		<a class="float-right cursor-pointer" href="index.html" onclick="logout()">Logout</a>
-		<a class="float-right cursor-pointer mr-3" href="mandash.html">Dashboard</a>
+		<a class="float-right cursor-pointer" href="index.html"
+			onclick="logout()">Logout</a> <a
+			class="float-right cursor-pointer mr-3" href="mandash.html">Dashboard</a>
 	</nav>
 
 	<div class="container">
 		<div class="px-3 py-3 border-bottom border-secondary">
 			<h2 class="text-center text-primary mb-0">Reimbursements</h2>
+		</div>
+		<div class="text-center border-bottom border-secondary py-3">
+			<input type="radio" id="all-reimbs-radio" name="reimb-filter" value="all" class="cursor-pointer d-inline" onclick="getAllReimbs()"> <label
+				for="all">All</label> 
+			<input type="radio" id="pending-reimbs-radio"
+				name="reimb-filter" value="pending" class="cursor-pointer d-inline ml-5" onclick="getReimbsByStatus(1)"> <label for="pending">Pending</label>
+			<input type="radio" id="approved-reimbs-radio" name="reimb-filter" value="approved" class="cursor-pointer d-inline ml-5" onclick="getReimbsByStatus(2)"> <label
+				for="approved">Approved</label>
+			<input type="radio" id="denied-reimbs-radio"
+				name="reimb-filter" value="denied" class="cursor-pointer d-inline ml-5" onclick="getReimbsByStatus(3)"> <label for="denied">Denied</label>
 		</div>
 		<table class="table mt-3">
 			<thead class="thead-dark">
@@ -53,27 +64,45 @@
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 		crossorigin="anonymous"></script>
 	<script>
-		async function getReimb(id) {
-			// console.log(id);
-			let response = await fetch("http://localhost:8080/project-1-bret-baker/reimb-review/s?reimb_id=" + id);
-			let res = await response.json();
-			// console.log(res);
-			sessionStorage.setItem("currentReimb", res.id);
-			window.location.href = "http://localhost:8080/project-1-bret-baker/static/reimbursement.html";
-		};
-		
+		let rows;
+	
 		window.onload = async function() {
 			// console.log("working");
 			try {
 				// console.log(sessionStorage.currentUser);
 				let username = sessionStorage.currentUser;
 				let r = await fetch("http://localhost:8080/project-1-bret-baker/hello/s?ers_username=" + username);
-				let name = await r.json();
+				let res = await r.json();
+				let name = await res.firstName;
 				// console.log(resp);
 				// let name = await resp.split('');
 				// name[0] = await name[0].toUpperCase();
 				// name = await name.join('');
 				document.getElementById("nav-header").innerHTML = "ERS | Hello, " + name;
+				getAllReimbs();
+			} catch(error) {
+				// Failed to login
+				console.log(error);
+				// alert("Failed to login");
+			}
+		}
+		
+		async function getReimb(id) {
+			try {
+				// console.log(id);
+				let response = await fetch("http://localhost:8080/project-1-bret-baker/reimb-review/s?reimb_id=" + id);
+				let res = await response.json();
+				// console.log(res);
+				sessionStorage.setItem("currentReimb", res.id);
+				window.location.href = "http://localhost:8080/project-1-bret-baker/static/reimbursement.html";
+			} catch (err) {
+				console.error(err);
+			}
+		};
+		
+		async function getAllReimbs() {
+			document.getElementById("table-bod").innerHTML = "";
+			try {
 				let response = await fetch("http://localhost:8080/project-1-bret-baker/reimbs");
 				let resp = await response.json();
 				// console.log(resp);
@@ -108,6 +137,43 @@
 				// alert("Failed to login");
 			}
 		}
+		
+		async function getReimbsByStatus(statusId) {
+			document.getElementById("table-bod").innerHTML = "";
+			try{
+				let response = await fetch("http://localhost:8080/project-1-bret-baker/reimbs-by-status/s?reimb_status_id=" + statusId);
+				let resp = await response.json();
+				for (let i = 0; i < resp.length; i++) {
+					let row = document.getElementById("table-bod").insertRow();
+					row.insertCell(0).innerHTML = resp[i].id;
+					row.insertCell(1).innerHTML = resp[i].amount;
+					row.insertCell(2).innerHTML = resp[i].submitted;
+					row.insertCell(3).innerHTML = resp[i].resolved;
+					row.insertCell(4).innerHTML = resp[i].description;
+					row.insertCell(5).innerHTML = resp[i].author;
+					row.insertCell(6).innerHTML = resp[i].resolver;
+					row.insertCell(7).innerHTML = resp[i].statusId;
+					row.insertCell(8).innerHTML = resp[i].typeId;
+					if (resp[i].statusId === 1) {
+						row.classList.add("table-warning");
+					} else if (resp[i].statusId === 2) {
+						row.classList.add("table-success");
+					} else if (resp[i].statusId === 3) {
+						row.classList.add("table-danger");
+					}
+					row.classList.add("border-bottom");
+					row.classList.add("border-secondary");
+					row.classList.add("cursor-pointer");
+					row.classList.add("reimb-row");
+					// row.setAttribute("value", resp[i].id);
+					row.setAttribute("onclick", "getReimb(" + resp[i].id + ")");
+				}
+			} catch(e) {
+				console.error(e);
+			}
+		}
+		
+		
 		
 		function logout() {
 			sessionStorage.clear();

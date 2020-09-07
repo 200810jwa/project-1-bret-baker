@@ -7,6 +7,6 @@ import com.revpro1.models.User;
 public interface IUserDAO {
 	
 	public List<User> getByUsername(String username);
-	public User getById(int id);
+	public List<User> getById(int id);
 
 }

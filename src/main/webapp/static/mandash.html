@@ -47,7 +47,8 @@
 				// console.log(sessionStorage.currentUser);
 				let username = sessionStorage.currentUser;
 				let response = await fetch("http://localhost:8080/project-1-bret-baker/hello/s?ers_username=" + username);
-				let name = await response.json();
+				let res = await response.json();
+				let name = await res.firstName;
 				// console.log(resp);
 				// let name = await resp.split('');
 				// name[0] = await name[0].toUpperCase();

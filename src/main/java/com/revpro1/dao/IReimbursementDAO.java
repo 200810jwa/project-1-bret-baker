@@ -9,9 +9,10 @@ public interface IReimbursementDAO {
 	
 	public List<Reimbursement> getAllReimbursements();
 	public List<Reimbursement> getById(int id);
-	public boolean approveById(int id);
-	public boolean denyById(int id);
+	public boolean approveById(int id, int resolverId);
+	public boolean denyById(int id, int resolverId);
 	public List<Reimbursement> getByAuthorId(int authorId);
 	public boolean insert(InsertReimbTemplate insertReimbTemplate);
+	public List<Reimbursement> getByStatusId(int statusId);
 
 }

@@ -62,7 +62,9 @@ public class UserDAO implements IUserDAO {
 	}
 	
 	@Override
-	public User getById(int id) {
+	public List<User> getById(int id) {
+		
+		List<User> users = new ArrayList<>();
 		
 		try (Connection conn = ConnectionUtil.getConnection()) {
 
@@ -75,14 +77,15 @@ public class UserDAO implements IUserDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				return new User(
-					rs.getInt("ers_users_id"),
-					rs.getString("ers_username"),
-					rs.getString("ers_password"),
-					rs.getString("user_first_name"),
-					rs.getString("user_last_name"), 
-					rs.getString("user_email"), 
-					rs.getInt("user_role_id"));
+				int id1 = rs.getInt("ers_users_id");
+				String username1 = rs.getString("ers_username");
+				String password = rs.getString("ers_password");
+				String firstname = rs.getString("user_first_name");
+				String lastname = rs.getString("user_last_name");
+				String email = rs.getString("user_email");
+				int roleId = rs.getInt("user_role_id");
+				User user = new User(id1, username1, password, firstname, lastname, email, roleId);
+				users.add(user);
 			}
 			
 		} catch (SQLException e) {
@@ -92,7 +95,7 @@ public class UserDAO implements IUserDAO {
 			closeResources();
 		}
 
-		return null;
+		return users;
 		
 	}
 

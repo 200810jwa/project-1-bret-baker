@@ -27,11 +27,16 @@ public class ApproveServlet extends HttpServlet {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String id = request.getParameter("reimb_id");
+		String resolverId = request.getParameter("reimb_resolver");
+		
+//		System.out.println("id = " + id);
+//		System.out.println("resolverId = " + resolverId);
 		
 		int id1 = Integer.parseInt(id);
+		int id2 = Integer.parseInt(resolverId);
 		
 //		List<Reimbursement> reimbs = reimbServices.getById(id1);
-		boolean approve = reimbServices.approveById(id1);
+		boolean approve = reimbServices.approveById(id1, id2);
 		
 		if(approve == false) {
 //			throw exception

@@ -17,16 +17,19 @@ import com.revpro1.models.templates.LoginTemplate;
 import com.revpro1.utils.ResponseUtil;
 import com.revpro1.services.HelloService;
 import com.revpro1.services.LoginService;
+import com.revpro1.services.UserService;
 
-public class HelloServlet extends HttpServlet {
-
-	private HelloService helloService = new HelloService();
+public class UserServlet1 extends HttpServlet {
+	
+	private UserService userService = new UserService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String username = request.getParameter("ers_username");
+		String userId = request.getParameter("ers_users_id");
 		
-		List<User> user = helloService.hello(username);
+		int id = Integer.parseInt(userId);
+		
+		List<User> user = userService.getUserById(id);
 		
 		if(user == null) {
 //			throw exception

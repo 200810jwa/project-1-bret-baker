@@ -28,6 +28,7 @@
       <div class="card-body">
         <h5 class="card-title mb-3"><strong>Amount: $</strong><span id="reimbAmount"></span></h5>
         <h5 class="card-title mb-3"><strong>Submitted: </strong><span id="reimbSubmitted"></span></h5>
+        <h5 class="card-title mb-3"><strong>Resolved: </strong><span id="reimbResolved"></span></h5>
         <h5 class="card-title mb-3"><strong>Description:</strong></h5>
         <h6 class="card-text mb-3"><span id="reimbDescription"></span></h6>
         <h5 class="card-title mb-3"><strong>Receipt: </strong></h5>
@@ -56,7 +57,8 @@
 				// console.log(sessionStorage.currentUser);
 				let username = sessionStorage.currentUser;
 				let r = await fetch("http://localhost:8080/project-1-bret-baker/hello/s?ers_username=" + username);
-				let name = await r.json();
+				let resp = await r.json();
+				let name = await resp.firstName;
 				// console.log(resp);
 				// let name = await resp.split('');
 				// name[0] = await name[0].toUpperCase();
@@ -66,13 +68,33 @@
 				let response = await fetch("http://localhost:8080/project-1-bret-baker/reimb-review/s?reimb_id=" + reimb);
 				let res = await response.json();
 				console.log(res);
+				let author = await res.author;
+				let r1 = await fetch("http://localhost:8080/project-1-bret-baker/user-by-id/s?ers_users_id=" + author);
+				let res1 = await r1.json();
+				let afn = res1.firstName;
+				let aln = res1.lastName;
 				document.getElementById("reimbId").innerHTML = res.id;
 				document.getElementById("reimbAmount").innerHTML = res.amount;
 				document.getElementById("reimbSubmitted").innerHTML = res.submitted;
+				document.getElementById("reimbResolved").innerHTML = res.resolved;
 				document.getElementById("reimbDescription").innerHTML = res.description;
-				document.getElementById("reimbAuthor").innerHTML = res.author;
-				document.getElementById("reimbStatus").innerHTML = res.statusId;
-				document.getElementById("reimbType").innerHTML = res.typeId;
+				document.getElementById("reimbAuthor").innerHTML = afn + " " + aln;
+				if (res.statusId === 1) {
+					document.getElementById("reimbStatus").innerHTML = "Pending";
+				} else if (res.statusId === 2) {
+					document.getElementById("reimbStatus").innerHTML = "Approved";
+				} else if (res.statusId === 3) {
+					document.getElementById("reimbStatus").innerHTML = "Denied";
+				}
+				if (res.typeId === 1) {
+					document.getElementById("reimbType").innerHTML = "Lodging";
+				} else if (res.typeId === 2) {
+					document.getElementById("reimbType").innerHTML = "Travel";
+				} else if (res.typeId === 3) {
+					document.getElementById("reimbType").innerHTML = "Food";
+				} else if (res.typeId === 4) {
+					document.getElementById("reimbType").innerHTML = "Other";
+				}
 			} catch(error) {
 				console.error(error);
 			}
