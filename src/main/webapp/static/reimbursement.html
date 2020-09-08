@@ -30,9 +30,9 @@
         <h5 class="card-title mb-3"><strong>Submitted: </strong><span id="reimbSubmitted"></span></h5>
         <h5 class="card-title mb-3"><strong>Resolved: </strong><span id="reimbResolved"></span></h5>
         <h5 class="card-title mb-3"><strong>Description:</strong></h5>
-        <h6 class="card-text mb-3"><span id="reimbDescription"></span></h6>
+        <h5 class="card-text mb-3"><span id="reimbDescription"></span></h5>
         <h5 class="card-title mb-3"><strong>Receipt: </strong></h5>
-        <img class="mb-3" src="https://picsum.photos/200" alt="receipt">
+        <img id="receipt-image" class="mb-3" src="" alt="receipt" width="50%">
         <h5 class="card-title mb-3"><strong>Author: </strong><span id="reimbAuthor"></span></h5>
         <h5 class="card-title mb-3"><strong>Status: </strong><span id="reimbStatus"></span></h5>
         <h5 class="card-title mb-3"><strong>Type: </strong><span id="reimbType"></span></h5>
@@ -85,6 +85,7 @@
 				document.getElementById("reimbSubmitted").innerHTML = res.submitted;
 				document.getElementById("reimbResolved").innerHTML = res.resolved;
 				document.getElementById("reimbDescription").innerHTML = res.description;
+				document.getElementById("receipt-image").src = "data:image/png;base64," + res.receipt;
 				document.getElementById("reimbAuthor").innerHTML = afn + " " + aln;
 				if (res.statusId === 1) {
 					document.getElementById("reimbStatus").innerHTML = "Pending";

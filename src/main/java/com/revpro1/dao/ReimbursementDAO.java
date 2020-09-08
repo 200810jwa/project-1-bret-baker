@@ -216,14 +216,15 @@ public class ReimbursementDAO implements IReimbursementDAO {
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
 
-			String sql = "INSERT INTO project1.ers_reimbursement (reimb_amount, reimb_description, reimb_author, reimb_type_id) VALUES (?, ?, ?, ?)";
+			String sql = "INSERT INTO project1.ers_reimbursement (reimb_amount, reimb_description, reimb_receipt, reimb_author, reimb_type_id) VALUES (?, ?, ?, ?, ?)";
 
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			
 			stmt.setDouble(1, insertReimbTemplate.getAmount());
 			stmt.setString(2, insertReimbTemplate.getDescription());
-			stmt.setInt(3, insertReimbTemplate.getAuthor());
-			stmt.setInt(4, insertReimbTemplate.getType());
+			stmt.setBytes(3, insertReimbTemplate.getReceipt());
+			stmt.setInt(4, insertReimbTemplate.getAuthor());
+			stmt.setInt(5, insertReimbTemplate.getType());
 
 			stmt.executeUpdate();
 

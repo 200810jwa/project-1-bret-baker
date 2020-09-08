@@ -6,6 +6,7 @@ public class InsertReimbTemplate {
 	
 	private double amount;
 	private String description;
+	private byte[] receipt;
 	private int author;
 	private int type;
 
@@ -13,10 +14,11 @@ public class InsertReimbTemplate {
 		super();
 	}
 
-	public InsertReimbTemplate(double amount, String description, int author, int type) {
+	public InsertReimbTemplate(double amount, String description, byte[] receipt, int author, int type) {
 		super();
 		this.amount = amount;
 		this.description = description;
+		this.receipt = receipt;
 		this.author = author;
 		this.type = type;
 	}
@@ -35,6 +37,14 @@ public class InsertReimbTemplate {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public byte[] getReceipt() {
+		return receipt;
+	}
+
+	public void setReceipt(byte[] receipt) {
+		this.receipt = receipt;
 	}
 
 	public int getAuthor() {

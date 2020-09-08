@@ -24,14 +24,14 @@
 			<h2 class="text-center text-primary mb-0">Reimbursements</h2>
 		</div>
 		<div class="text-center border-bottom border-secondary py-3">
-			<input type="radio" id="all-reimbs-radio" name="reimb-filter" value="all" class="cursor-pointer d-inline" onclick="getAllReimbs()"> <label
+			<input type="radio" id="all-reimbs-radio" name="reimb-filter" value="all" class="cursor-pointer d-inline" onclick="refactorAll()"> <label class="mb-0"
 				for="all">All</label> 
 			<input type="radio" id="pending-reimbs-radio"
-				name="reimb-filter" value="pending" class="cursor-pointer d-inline ml-5" onclick="getReimbsByStatus(1)"> <label for="pending">Pending</label>
-			<input type="radio" id="approved-reimbs-radio" name="reimb-filter" value="approved" class="cursor-pointer d-inline ml-5" onclick="getReimbsByStatus(2)"> <label
+				name="reimb-filter" value="pending" class="cursor-pointer d-inline ml-5" onclick="refactorPending()"> <label class="mb-0" for="pending">Pending</label>
+			<input type="radio" id="approved-reimbs-radio" name="reimb-filter" value="approved" class="cursor-pointer d-inline ml-5" onclick="refactorApproved()"> <label class="mb-0"
 				for="approved">Approved</label>
 			<input type="radio" id="denied-reimbs-radio"
-				name="reimb-filter" value="denied" class="cursor-pointer d-inline ml-5" onclick="getReimbsByStatus(3)"> <label for="denied">Denied</label>
+				name="reimb-filter" value="denied" class="cursor-pointer d-inline ml-5" onclick="refactorDenied()"> <label class="mb-0" for="denied">Denied</label>
 		</div>
 		<table class="table mt-3">
 			<thead class="thead-dark">
@@ -65,6 +65,7 @@
 		crossorigin="anonymous"></script>
 	<script>
 		let rows;
+		let resp;
 	
 		window.onload = async function() {
 			// console.log("working");
@@ -104,7 +105,7 @@
 			document.getElementById("table-bod").innerHTML = "";
 			try {
 				let response = await fetch("http://localhost:8080/project-1-bret-baker/reimbs");
-				let resp = await response.json();
+				resp = await response.json();
 				// console.log(resp);
 				for (let i = 0; i < resp.length; i++) {
 					let row = document.getElementById("table-bod").insertRow();
@@ -138,12 +139,74 @@
 			}
 		}
 		
-		async function getReimbsByStatus(statusId) {
+		//async function getReimbsByStatus(statusId) {
+			//document.getElementById("table-bod").innerHTML = "";
+			//try{
+				//let response = await fetch("http://localhost:8080/project-1-bret-baker/reimbs-by-status/s?reimb_status_id=" + statusId);
+				//let resp = await response.json();
+				//for (let i = 0; i < resp.length; i++) {
+					//let row = document.getElementById("table-bod").insertRow();
+					//row.insertCell(0).innerHTML = resp[i].id;
+					//row.insertCell(1).innerHTML = resp[i].amount;
+					//row.insertCell(2).innerHTML = resp[i].submitted;
+					//row.insertCell(3).innerHTML = resp[i].resolved;
+					//row.insertCell(4).innerHTML = resp[i].description;
+					//row.insertCell(5).innerHTML = resp[i].author;
+					//row.insertCell(6).innerHTML = resp[i].resolver;
+					//row.insertCell(7).innerHTML = resp[i].statusId;
+					//row.insertCell(8).innerHTML = resp[i].typeId;
+					//if (resp[i].statusId === 1) {
+						//row.classList.add("table-warning");
+					//} else if (resp[i].statusId === 2) {
+//						row.classList.add("table-success");
+	//				} else if (resp[i].statusId === 3) {
+		//				row.classList.add("table-danger");
+			//		}
+				//	row.classList.add("border-bottom");
+//					row.classList.add("border-secondary");
+	//				row.classList.add("cursor-pointer");
+		//			row.classList.add("reimb-row");
+			//		// row.setAttribute("value", resp[i].id);
+				//	row.setAttribute("onclick", "getReimb(" + resp[i].id + ")");
+//				}
+	//		} catch(e) {
+		//		console.error(e);
+			//}
+		//}
+		
+		function refactorAll() {
 			document.getElementById("table-bod").innerHTML = "";
-			try{
-				let response = await fetch("http://localhost:8080/project-1-bret-baker/reimbs-by-status/s?reimb_status_id=" + statusId);
-				let resp = await response.json();
-				for (let i = 0; i < resp.length; i++) {
+			for (let i = 0; i < resp.length; i++) {
+				let row = document.getElementById("table-bod").insertRow();
+				row.insertCell(0).innerHTML = resp[i].id;
+				row.insertCell(1).innerHTML = resp[i].amount;
+				row.insertCell(2).innerHTML = resp[i].submitted;
+				row.insertCell(3).innerHTML = resp[i].resolved;
+				row.insertCell(4).innerHTML = resp[i].description;
+				row.insertCell(5).innerHTML = resp[i].author;
+				row.insertCell(6).innerHTML = resp[i].resolver;
+				row.insertCell(7).innerHTML = resp[i].statusId;
+				row.insertCell(8).innerHTML = resp[i].typeId;
+				if (resp[i].statusId === 1) {
+					row.classList.add("table-warning");
+				} else if (resp[i].statusId === 2) {
+					row.classList.add("table-success");
+				} else if (resp[i].statusId === 3) {
+					row.classList.add("table-danger");
+				}
+				row.classList.add("border-bottom");
+				row.classList.add("border-secondary");
+				row.classList.add("cursor-pointer");
+				row.classList.add("reimb-row");
+				// row.setAttribute("value", resp[i].id);
+				row.setAttribute("onclick", "getReimb(" + resp[i].id + ")");
+			}
+		}
+		
+		function refactorPending() {
+			document.getElementById("table-bod").innerHTML = "";
+			for (let i = 0; i < resp.length; i++) {
+				if (resp[i].statusId === 1) {
 					let row = document.getElementById("table-bod").insertRow();
 					row.insertCell(0).innerHTML = resp[i].id;
 					row.insertCell(1).innerHTML = resp[i].amount;
@@ -168,8 +231,68 @@
 					// row.setAttribute("value", resp[i].id);
 					row.setAttribute("onclick", "getReimb(" + resp[i].id + ")");
 				}
-			} catch(e) {
-				console.error(e);
+			}
+		}
+		
+		function refactorApproved() {
+			document.getElementById("table-bod").innerHTML = "";
+			for (let i = 0; i < resp.length; i++) {
+				if (resp[i].statusId === 2) {
+					let row = document.getElementById("table-bod").insertRow();
+					row.insertCell(0).innerHTML = resp[i].id;
+					row.insertCell(1).innerHTML = resp[i].amount;
+					row.insertCell(2).innerHTML = resp[i].submitted;
+					row.insertCell(3).innerHTML = resp[i].resolved;
+					row.insertCell(4).innerHTML = resp[i].description;
+					row.insertCell(5).innerHTML = resp[i].author;
+					row.insertCell(6).innerHTML = resp[i].resolver;
+					row.insertCell(7).innerHTML = resp[i].statusId;
+					row.insertCell(8).innerHTML = resp[i].typeId;
+					if (resp[i].statusId === 1) {
+						row.classList.add("table-warning");
+					} else if (resp[i].statusId === 2) {
+						row.classList.add("table-success");
+					} else if (resp[i].statusId === 3) {
+						row.classList.add("table-danger");
+					}
+					row.classList.add("border-bottom");
+					row.classList.add("border-secondary");
+					row.classList.add("cursor-pointer");
+					row.classList.add("reimb-row");
+					// row.setAttribute("value", resp[i].id);
+					row.setAttribute("onclick", "getReimb(" + resp[i].id + ")");
+				}
+			}
+		}
+		
+		function refactorDenied() {
+			document.getElementById("table-bod").innerHTML = "";
+			for (let i = 0; i < resp.length; i++) {
+				if (resp[i].statusId === 3) {
+					let row = document.getElementById("table-bod").insertRow();
+					row.insertCell(0).innerHTML = resp[i].id;
+					row.insertCell(1).innerHTML = resp[i].amount;
+					row.insertCell(2).innerHTML = resp[i].submitted;
+					row.insertCell(3).innerHTML = resp[i].resolved;
+					row.insertCell(4).innerHTML = resp[i].description;
+					row.insertCell(5).innerHTML = resp[i].author;
+					row.insertCell(6).innerHTML = resp[i].resolver;
+					row.insertCell(7).innerHTML = resp[i].statusId;
+					row.insertCell(8).innerHTML = resp[i].typeId;
+					if (resp[i].statusId === 1) {
+						row.classList.add("table-warning");
+					} else if (resp[i].statusId === 2) {
+						row.classList.add("table-success");
+					} else if (resp[i].statusId === 3) {
+						row.classList.add("table-danger");
+					}
+					row.classList.add("border-bottom");
+					row.classList.add("border-secondary");
+					row.classList.add("cursor-pointer");
+					row.classList.add("reimb-row");
+					// row.setAttribute("value", resp[i].id);
+					row.setAttribute("onclick", "getReimb(" + resp[i].id + ")");
+				}
 			}
 		}
 		
