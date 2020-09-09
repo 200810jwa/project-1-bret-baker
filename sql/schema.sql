@@ -52,26 +52,26 @@ CREATE TABLE project1.ers_reimbursement (
 );
 
 -- seed 1
-INSERT INTO project1.ers_user_roles (user_role) VALUES ('manager');
-INSERT INTO project1.ers_user_roles (user_role) VALUES ('employee');
+INSERT INTO project1.ers_user_roles (user_role) VALUES ('Manager');
+INSERT INTO project1.ers_user_roles (user_role) VALUES ('Employee');
 
 -- seed 2
-INSERT INTO project1.ers_reimbursement_type (reimb_type) VALUES ('lodging');
-INSERT INTO project1.ers_reimbursement_type (reimb_type) VALUES ('travel');
-INSERT INTO project1.ers_reimbursement_type (reimb_type) VALUES ('food');
-INSERT INTO project1.ers_reimbursement_type (reimb_type) VALUES ('other');
+INSERT INTO project1.ers_reimbursement_type (reimb_type) VALUES ('Lodging');
+INSERT INTO project1.ers_reimbursement_type (reimb_type) VALUES ('Travel');
+INSERT INTO project1.ers_reimbursement_type (reimb_type) VALUES ('Food');
+INSERT INTO project1.ers_reimbursement_type (reimb_type) VALUES ('Other');
 
 -- seed 3
-INSERT INTO project1.ers_reimbursement_status (reimb_status) VALUES ('pending');
-INSERT INTO project1.ers_reimbursement_status (reimb_status) VALUES ('approved');
-INSERT INTO project1.ers_reimbursement_status (reimb_status) VALUES ('denied');
+INSERT INTO project1.ers_reimbursement_status (reimb_status) VALUES ('Pending');
+INSERT INTO project1.ers_reimbursement_status (reimb_status) VALUES ('Approved');
+INSERT INTO project1.ers_reimbursement_status (reimb_status) VALUES ('Denied');
 
 -- seed 4
-INSERT INTO project1.ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id) VALUES ('tb@mail.com', '1212', 'tom', 'brady', 'tb@mail.com', 1);
-INSERT INTO project1.ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id) VALUES ('rg@mail.com', '8787', 'rob', 'gronkowski', 'rg@mail.com', 2);
-
--- seed 5
-INSERT INTO project1.ers_reimbursement (reimb_amount, reimb_description, reimb_author, reimb_resolver, reimb_status_id, reimb_type_id) VALUES (100, 'flight to tampa for recruitment', 2, 1, 1, 2);
+INSERT INTO project1.ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id) VALUES ('ba@mail.com', '1111', 'Bruce', 'Arians', 'ba@mail.com', 1);
+INSERT INTO project1.ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id) VALUES ('tb@mail.com', '1111', 'Tom', 'Brady', 'tb@mail.com', 2);
+INSERT INTO project1.ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id) VALUES ('rg@mail.com', '1111', 'Rob', 'Gronkowski', 'rg@mail.com', 2);
+INSERT INTO project1.ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id) VALUES ('me@mail.com', '1111', 'Mike', 'Evans', 'me@mail.com', 2);
+INSERT INTO project1.ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id) VALUES ('lf@mail.com', '1111', 'Leonard', 'Fournette', 'lf@mail.com', 2);
 
 -- query 1
 SELECT * FROM project1.ers_reimbursement;

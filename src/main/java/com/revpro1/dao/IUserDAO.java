@@ -8,5 +8,6 @@ public interface IUserDAO {
 	
 	public List<User> getByUsername(String username);
 	public List<User> getById(int id);
+	public void updatePassword(String password, String username);
 
 }

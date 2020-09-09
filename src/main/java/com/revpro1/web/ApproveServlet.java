@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revpro1.logger.Log4J;
 import com.revpro1.models.Reimbursement;
 import com.revpro1.models.User;
 import com.revpro1.models.templates.LoginTemplate;
@@ -21,6 +22,8 @@ import com.revpro1.services.LoginService;
 import com.revpro1.services.ReimbServices;
 
 public class ApproveServlet extends HttpServlet {
+	
+	public static Log4J log = new Log4J();
 
 	private ReimbServices reimbServices = new ReimbServices();
 	
@@ -40,13 +43,14 @@ public class ApproveServlet extends HttpServlet {
 		
 		if(approve == false) {
 //			throw exception
+			log.approveReimbF();
 			response.setStatus(400);
 		} 
 		
 		else {
 			
 //			System.out.println("arraylist of reimbs = " + reimbs.toString());
-
+			log.approveReimbS();
 			ResponseUtil.writeJSON(response, approve);
 			
 		}

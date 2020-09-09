@@ -1,0 +1,2 @@
+2020-09-09 13:53:23 INFO  Log4J:10 - Login success
+2020-09-09 13:53:24 INFO  Log4J:18 - Hello success

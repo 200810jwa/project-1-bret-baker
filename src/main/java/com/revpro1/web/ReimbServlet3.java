@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revpro1.logger.Log4J;
 import com.revpro1.models.Reimbursement;
 import com.revpro1.models.User;
 import com.revpro1.models.templates.LoginTemplate;
@@ -20,6 +21,8 @@ import com.revpro1.services.LoginService;
 import com.revpro1.services.ReimbServices;
 
 public class ReimbServlet3 extends HttpServlet {
+	
+	public static Log4J log = new Log4J();
 
 //	private static final long serialVersionUID = 1L;
 	private ObjectMapper objectMapper = new ObjectMapper();
@@ -37,13 +40,14 @@ public class ReimbServlet3 extends HttpServlet {
 		
 		if(!reimb) {
 //			throw exception
+			log.addReimbF();
 			response.setStatus(400);
 		} else {
 //			HttpSession session = request.getSession();
 			// This creates a cookie with a single key-value
 			// JSESSIONID = something
 			// Which represents our session
-			
+			log.addReimbS();
 			// Store this employee object on the backend/server corresponding to this session
 //			session.setAttribute("currentUser", user);
 			ResponseUtil.writeJSON(response, reimb);

@@ -11,12 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revpro1.logger.Log4J;
 import com.revpro1.models.User;
 import com.revpro1.models.templates.LoginTemplate;
 import com.revpro1.utils.ResponseUtil;
 import com.revpro1.services.LoginService;
 
 public class LoginServlet extends HttpServlet {
+	
+	public static Log4J log = new Log4J(); 
 
 //	private static final long serialVersionUID = 1L;
 	private ObjectMapper objectMapper = new ObjectMapper();
@@ -33,6 +36,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if(user == null) {
 //			throw exception
+			log.loginF();
 			response.setStatus(400);
 		} else {
 			HttpSession session = request.getSession();
@@ -42,6 +46,7 @@ public class LoginServlet extends HttpServlet {
 			
 			// Store this employee object on the backend/server corresponding to this session
 			session.setAttribute("currentUser", user);
+			log.loginS();
 			ResponseUtil.writeJSON(response, user);
 //			System.out.println(user.toString());
 			

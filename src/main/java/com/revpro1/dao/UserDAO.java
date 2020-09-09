@@ -98,6 +98,31 @@ public class UserDAO implements IUserDAO {
 		return users;
 		
 	}
+	
+	@Override
+	public void updatePassword(String password, String username) {
+		
+		try (Connection conn = ConnectionUtil.getConnection()) {
+
+			String sql = "UPDATE project1.ers_users SET ers_password = ? WHERE ers_username = ?";
+
+			PreparedStatement stmt = conn.prepareStatement(sql);
+
+			stmt.setString(1, password);
+			stmt.setString(2, username);
+
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		} finally {
+			closeResources();
+		}
+		
+		return;
+		
+	}
 
 	private void closeResources() {
 		try {

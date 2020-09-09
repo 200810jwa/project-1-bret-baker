@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revpro1.logger.Log4J;
 import com.revpro1.models.Reimbursement;
 import com.revpro1.models.User;
 import com.revpro1.models.templates.LoginTemplate;
@@ -21,6 +22,8 @@ import com.revpro1.services.LoginService;
 import com.revpro1.services.ReimbServices;
 
 public class ReimbServlet1 extends HttpServlet {
+	
+	public static Log4J log = new Log4J();
 
 	private ReimbServices reimbServices = new ReimbServices();
 	
@@ -34,13 +37,14 @@ public class ReimbServlet1 extends HttpServlet {
 		
 		if(reimbs == null) {
 //			throw exception
+			log.loadReimbF();
 			response.setStatus(400);
 		} 
 		
 		else {
 			
 //			System.out.println("arraylist of reimbs = " + reimbs.toString());
-
+			log.loadReimbS();
 			ResponseUtil.writeJSON(response, reimbs.get(0));
 			
 		}
