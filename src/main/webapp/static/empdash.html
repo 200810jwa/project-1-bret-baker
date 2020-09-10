@@ -46,7 +46,12 @@
 		crossorigin="anonymous"></script>
 	<script>
 		window.onload = async function() {
+			
+			let role = await parseInt(sessionStorage.userRole);
+			await protectRoute(role);
+			
 			try {
+
 				// console.log(sessionStorage.currentUser);
 				let username = sessionStorage.currentUser;
 				let response = await fetch("http://localhost:8080/project-1-bret-baker/hello/s?ers_username=" + username);
@@ -57,6 +62,21 @@
 				// name[0] = await name[0].toUpperCase();
 				// name = await name.join('');
 				document.getElementById("nav-header").innerHTML = "ERS | Hello, " + name;
+			} catch(error) {
+				// Failed to login
+				console.log(error);
+				// alert("Failed to login");
+			}
+		}
+		
+		async function protectRoute(role) {
+			//console.log(role);
+			try {
+				if (role !== 2) {
+					window.location.href = "http://localhost:8080/project-1-bret-baker/static/index.html";
+					logout();
+					sessionStorage.setItem("unAuth", true);
+				}
 			} catch(error) {
 				// Failed to login
 				console.log(error);

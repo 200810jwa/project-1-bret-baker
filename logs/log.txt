@@ -1,2 +1,138 @@
 2020-09-09 13:53:23 INFO  Log4J:10 - Login success
 2020-09-09 13:53:24 INFO  Log4J:18 - Hello success
+2020-09-10 10:39:26 INFO  Log4J:10 - Login success
+2020-09-10 10:39:27 INFO  Log4J:18 - Hello success
+2020-09-10 10:40:33 INFO  Log4J:18 - Hello success
+2020-09-10 10:40:50 INFO  Log4J:10 - Login success
+2020-09-10 10:40:51 INFO  Log4J:18 - Hello success
+2020-09-10 10:42:34 INFO  Log4J:10 - Login success
+2020-09-10 10:42:34 INFO  Log4J:18 - Hello success
+2020-09-10 10:45:02 INFO  Log4J:10 - Login success
+2020-09-10 10:45:03 INFO  Log4J:18 - Hello success
+2020-09-10 10:49:03 INFO  Log4J:10 - Login success
+2020-09-10 10:49:03 INFO  Log4J:18 - Hello success
+2020-09-10 10:49:29 INFO  Log4J:18 - Hello success
+2020-09-10 10:49:30 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 10:55:02 INFO  Log4J:10 - Login success
+2020-09-10 10:55:03 INFO  Log4J:18 - Hello success
+2020-09-10 10:55:09 INFO  Log4J:18 - Hello success
+2020-09-10 10:56:06 INFO  Log4J:18 - Hello success
+2020-09-10 10:56:47 INFO  Log4J:10 - Login success
+2020-09-10 10:56:48 INFO  Log4J:18 - Hello success
+2020-09-10 10:59:07 INFO  Log4J:18 - Hello success
+2020-09-10 10:59:27 INFO  Log4J:18 - Hello success
+2020-09-10 11:00:59 INFO  Log4J:10 - Login success
+2020-09-10 11:01:00 INFO  Log4J:18 - Hello success
+2020-09-10 11:05:34 INFO  Log4J:10 - Login success
+2020-09-10 11:05:35 INFO  Log4J:18 - Hello success
+2020-09-10 11:05:48 INFO  Log4J:18 - Hello success
+2020-09-10 11:07:20 INFO  Log4J:10 - Login success
+2020-09-10 11:07:20 INFO  Log4J:18 - Hello success
+2020-09-10 11:07:27 INFO  Log4J:18 - Hello success
+2020-09-10 11:09:12 INFO  Log4J:10 - Login success
+2020-09-10 11:09:13 INFO  Log4J:18 - Hello success
+2020-09-10 11:09:20 INFO  Log4J:18 - Hello success
+2020-09-10 11:13:16 INFO  Log4J:10 - Login success
+2020-09-10 11:13:17 INFO  Log4J:18 - Hello success
+2020-09-10 11:14:43 INFO  Log4J:18 - Hello success
+2020-09-10 11:14:44 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 11:19:15 INFO  Log4J:10 - Login success
+2020-09-10 11:19:16 INFO  Log4J:18 - Hello success
+2020-09-10 11:19:29 INFO  Log4J:18 - Hello success
+2020-09-10 11:19:45 INFO  Log4J:10 - Login success
+2020-09-10 11:19:46 INFO  Log4J:18 - Hello success
+2020-09-10 11:20:00 INFO  Log4J:18 - Hello success
+2020-09-10 11:20:01 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 11:20:08 INFO  Log4J:18 - Hello success
+2020-09-10 11:21:09 INFO  Log4J:10 - Login success
+2020-09-10 11:21:09 INFO  Log4J:18 - Hello success
+2020-09-10 11:21:16 INFO  Log4J:18 - Hello success
+2020-09-10 11:22:09 INFO  Log4J:10 - Login success
+2020-09-10 11:22:10 INFO  Log4J:18 - Hello success
+2020-09-10 11:22:22 INFO  Log4J:18 - Hello success
+2020-09-10 11:22:37 INFO  Log4J:10 - Login success
+2020-09-10 11:22:37 INFO  Log4J:18 - Hello success
+2020-09-10 11:23:13 INFO  Log4J:18 - Hello success
+2020-09-10 11:30:30 INFO  Log4J:10 - Login success
+2020-09-10 11:30:30 INFO  Log4J:18 - Hello success
+2020-09-10 11:30:52 INFO  Log4J:18 - Hello success
+2020-09-10 11:30:58 INFO  Log4J:18 - Hello success
+2020-09-10 11:31:12 INFO  Log4J:10 - Login success
+2020-09-10 11:31:13 INFO  Log4J:18 - Hello success
+2020-09-10 11:31:19 INFO  Log4J:18 - Hello success
+2020-09-10 11:31:32 INFO  Log4J:10 - Login success
+2020-09-10 11:31:33 INFO  Log4J:18 - Hello success
+2020-09-10 11:31:51 INFO  Log4J:18 - Hello success
+2020-09-10 11:32:07 INFO  Log4J:10 - Login success
+2020-09-10 11:32:08 INFO  Log4J:18 - Hello success
+2020-09-10 11:32:19 INFO  Log4J:18 - Hello success
+2020-09-10 11:32:32 INFO  Log4J:10 - Login success
+2020-09-10 11:32:33 INFO  Log4J:18 - Hello success
+2020-09-10 11:32:50 INFO  Log4J:10 - Login success
+2020-09-10 11:32:51 INFO  Log4J:18 - Hello success
+2020-09-10 11:32:54 INFO  Log4J:18 - Hello success
+2020-09-10 11:32:55 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 11:32:59 INFO  Log4J:18 - Hello success
+2020-09-10 11:33:00 INFO  Log4J:18 - Hello success
+2020-09-10 11:33:37 INFO  Log4J:58 - Add reimbursement success
+2020-09-10 11:33:40 INFO  Log4J:18 - Hello success
+2020-09-10 11:33:43 INFO  Log4J:18 - Hello success
+2020-09-10 11:33:44 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 11:33:56 INFO  Log4J:34 - Load reimbursement success
+2020-09-10 11:33:57 INFO  Log4J:18 - Hello success
+2020-09-10 11:33:57 INFO  Log4J:34 - Load reimbursement success
+2020-09-10 11:34:17 INFO  Log4J:18 - Hello success
+2020-09-10 11:34:18 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 11:34:22 INFO  Log4J:18 - Hello success
+2020-09-10 11:34:24 INFO  Log4J:18 - Hello success
+2020-09-10 11:35:04 INFO  Log4J:58 - Add reimbursement success
+2020-09-10 11:35:07 INFO  Log4J:18 - Hello success
+2020-09-10 11:35:09 INFO  Log4J:18 - Hello success
+2020-09-10 11:35:10 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 11:35:20 INFO  Log4J:18 - Hello success
+2020-09-10 11:35:22 INFO  Log4J:18 - Hello success
+2020-09-10 11:35:56 INFO  Log4J:58 - Add reimbursement success
+2020-09-10 11:35:59 INFO  Log4J:18 - Hello success
+2020-09-10 11:36:01 INFO  Log4J:18 - Hello success
+2020-09-10 11:36:02 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 11:36:09 INFO  Log4J:18 - Hello success
+2020-09-10 11:36:11 INFO  Log4J:18 - Hello success
+2020-09-10 11:36:39 INFO  Log4J:58 - Add reimbursement success
+2020-09-10 11:36:42 INFO  Log4J:18 - Hello success
+2020-09-10 11:36:49 INFO  Log4J:18 - Hello success
+2020-09-10 11:36:50 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 11:37:11 INFO  Log4J:10 - Login success
+2020-09-10 11:37:12 INFO  Log4J:18 - Hello success
+2020-09-10 11:37:16 INFO  Log4J:18 - Hello success
+2020-09-10 11:37:17 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 11:37:47 INFO  Log4J:34 - Load reimbursement success
+2020-09-10 11:37:48 INFO  Log4J:18 - Hello success
+2020-09-10 11:37:48 INFO  Log4J:34 - Load reimbursement success
+2020-09-10 11:38:54 INFO  Log4J:42 - Approve reimbursement success
+2020-09-10 11:38:55 INFO  Log4J:18 - Hello success
+2020-09-10 11:38:55 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 11:39:10 INFO  Log4J:34 - Load reimbursement success
+2020-09-10 11:39:11 INFO  Log4J:18 - Hello success
+2020-09-10 11:39:12 INFO  Log4J:34 - Load reimbursement success
+2020-09-10 11:39:18 INFO  Log4J:42 - Approve reimbursement success
+2020-09-10 11:39:19 INFO  Log4J:18 - Hello success
+2020-09-10 11:39:20 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 11:39:50 INFO  Log4J:34 - Load reimbursement success
+2020-09-10 11:39:51 INFO  Log4J:18 - Hello success
+2020-09-10 11:39:52 INFO  Log4J:34 - Load reimbursement success
+2020-09-10 11:40:01 INFO  Log4J:50 - Deny reimbursement success
+2020-09-10 11:40:02 INFO  Log4J:18 - Hello success
+2020-09-10 11:40:03 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 11:40:41 INFO  Log4J:34 - Load reimbursement success
+2020-09-10 11:40:42 INFO  Log4J:18 - Hello success
+2020-09-10 11:40:42 INFO  Log4J:34 - Load reimbursement success
+2020-09-10 11:40:54 INFO  Log4J:18 - Hello success
+2020-09-10 11:41:05 INFO  Log4J:10 - Login success
+2020-09-10 11:41:06 INFO  Log4J:18 - Hello success
+2020-09-10 11:41:08 INFO  Log4J:18 - Hello success
+2020-09-10 11:41:09 INFO  Log4J:26 - Load reimbursements success
+2020-09-10 11:42:15 INFO  Log4J:34 - Load reimbursement success
+2020-09-10 11:42:16 INFO  Log4J:18 - Hello success
+2020-09-10 11:42:17 INFO  Log4J:34 - Load reimbursement success
+2020-09-10 11:42:23 INFO  Log4J:18 - Hello success
+2020-09-10 11:42:25 INFO  Log4J:26 - Load reimbursements success

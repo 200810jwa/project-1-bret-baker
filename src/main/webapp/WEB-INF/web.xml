@@ -45,7 +45,7 @@
 		<servlet-name>ReimbServlet</servlet-name>
 		<url-pattern>/reimbs</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<description></description>
 		<display-name>ReimbServlet1</display-name>
@@ -57,7 +57,7 @@
 		<servlet-name>ReimbServlet1</servlet-name>
 		<url-pattern>/reimb-review/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<description></description>
 		<display-name>ReimbServlet2</display-name>
@@ -69,7 +69,7 @@
 		<servlet-name>ReimbServlet2</servlet-name>
 		<url-pattern>/reimbs-by-author/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<description></description>
 		<display-name>ReimbServlet3</display-name>
@@ -81,7 +81,7 @@
 		<servlet-name>ReimbServlet3</servlet-name>
 		<url-pattern>/add-reimb</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<description></description>
 		<display-name>ReimbServlet4</display-name>
@@ -93,7 +93,7 @@
 		<servlet-name>ReimbServlet4</servlet-name>
 		<url-pattern>/reimbs-by-status/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<description></description>
 		<display-name>ApproveServlet</display-name>
@@ -105,7 +105,7 @@
 		<servlet-name>ApproveServlet</servlet-name>
 		<url-pattern>/reimb-approve/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<description></description>
 		<display-name>DenyServlet</display-name>
@@ -117,7 +117,7 @@
 		<servlet-name>DenyServlet</servlet-name>
 		<url-pattern>/reimb-deny/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<description></description>
 		<display-name>UserServlet</display-name>
@@ -129,7 +129,7 @@
 		<servlet-name>UserServlet</servlet-name>
 		<url-pattern>/user/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<description></description>
 		<display-name>UserServlet1</display-name>
@@ -141,5 +141,10 @@
 		<servlet-name>UserServlet1</servlet-name>
 		<url-pattern>/user-by-id/*</url-pattern>
 	</servlet-mapping>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/static/404.html</location>
+	</error-page>
 
 </web-app>

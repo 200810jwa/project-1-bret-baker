@@ -47,6 +47,14 @@
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 		crossorigin="anonymous"></script>
 	<script>
+	
+		window.onload = function() {
+			if(sessionStorage.unAuth) {
+				alert("Unauthorized access. Please login to try again.")
+			}
+			sessionStorage.clear();
+		}
+	
 		async function sendLogin() {
 			let usernameInput = document.getElementById("username");
 			let passwordInput = document.getElementById("password");
@@ -61,7 +69,11 @@
 					})
 				});
 				let resp = await response.json();
-				sessionStorage.setItem("currentUser", resp.username);
+				let username = await resp.username;
+				let role = await resp.roleId;
+				await populateStorage(username, role);
+				// sessionStorage.setItem({ "currentUser": username, "userRole", role });
+				// sessionStorage.setItem("userRole", role);
 				usernameInput.value = '';
 				passwordInput.value = '';
 				// window.location.href = "http://localhost:8080/project-1-bret-baker/";
@@ -76,6 +88,11 @@
 				alert("Failed to login");
 			}
 		}
+		
+		function populateStorage(username, role) {
+			  sessionStorage.setItem("currentUser", username);
+			  sessionStorage.setItem("userRole", role);
+			}
 		
 	</script>
 </body>
