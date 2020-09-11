@@ -16,7 +16,7 @@
 		<h4 id="nav-header" class="mb-0 d-inline text-white">ERS |</h4>
 		<a class="float-right cursor-pointer" href="index.html" onclick="logout()">Logout</a>
 		<a class="float-right cursor-pointer mr-3" href="viewpasttickets.html">Tickets</a>
-		<a class="float-right cursor-pointer mr-3" href="mandash.html">Dashboard</a>
+		<a class="float-right cursor-pointer mr-3" href="empdash.html">Dashboard</a>
 	</nav>
 
 	<div class="container">
@@ -54,19 +54,20 @@
 	<script>
 		window.onload = async function() {
 			
-			let role = await parseInt(sessionStorage.userRole);
-			await protectRoute(role);
 			try {
+				let role = await parseInt(sessionStorage.userRole);
+				await protectRoute(role);
+				await hello();
 				// console.log(sessionStorage.currentUser);
-				let username = sessionStorage.currentUser;
-				let r = await fetch("http://localhost:8080/project-1-bret-baker/hello/s?ers_username=" + username);
-				let resp = await r.json();
-				let name = await resp.firstName;
+				//let username = sessionStorage.currentUser;
+				//let r = await fetch("http://localhost:8080/project-1-bret-baker/hello/s?ers_username=" + username);
+				//let resp = await r.json();
+				//let name = await resp.firstName;
 				// console.log(resp);
 				// let name = await resp.split('');
 				// name[0] = await name[0].toUpperCase();
 				// name = await name.join('');
-				document.getElementById("nav-header").innerHTML = "ERS | Hello, " + name;
+				//document.getElementById("nav-header").innerHTML = "ERS | Hello, " + name;
 				let reimb = sessionStorage.currentReimb;
 				let response = await fetch("http://localhost:8080/project-1-bret-baker/reimb-review/s?reimb_id=" + reimb);
 				let res = await response.json();
@@ -118,6 +119,10 @@
 				console.log(error);
 				// alert("Failed to login");
 			}
+		}
+		
+		function hello() {
+			document.getElementById("nav-header").innerHTML = "ERS | Hello, " + sessionStorage.name;
 		}
 		
 		function logout() {

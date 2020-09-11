@@ -43,19 +43,21 @@
 		crossorigin="anonymous"></script>
 	<script>
 		window.onload = async function() {
-			let role = await parseInt(sessionStorage.userRole);
-			await protectRoute(role);
+			
 			try {
+				let role = await parseInt(sessionStorage.userRole);
+				await protectRoute(role);
+				await hello();
 				// console.log(sessionStorage.currentUser);
-				let username = sessionStorage.currentUser;
-				let response = await fetch("http://localhost:8080/project-1-bret-baker/hello/s?ers_username=" + username);
-				let res = await response.json();
-				let name = await res.firstName;
+				//let username = sessionStorage.currentUser;
+				//let response = await fetch("http://localhost:8080/project-1-bret-baker/hello/s?ers_username=" + username);
+				//let res = await response.json();
+				//let name = await res.firstName;
 				// console.log(resp);
 				// let name = await resp.split('');
 				// name[0] = await name[0].toUpperCase();
 				// name = await name.join('');
-				document.getElementById("nav-header").innerHTML = "ERS | Hello, " + name;
+				// document.getElementById("nav-header").innerHTML = "ERS | Hello, " + name;
 			} catch(error) {
 				// Failed to login
 				console.log(error);
@@ -76,6 +78,10 @@
 				console.log(error);
 				// alert("Failed to login");
 			}
+		}
+		
+		function hello() {
+			document.getElementById("nav-header").innerHTML = "ERS | Hello, " + sessionStorage.name;
 		}
 		
 		function logout() {

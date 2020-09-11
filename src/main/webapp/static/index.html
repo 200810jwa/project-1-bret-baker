@@ -71,7 +71,8 @@
 				let resp = await response.json();
 				let username = await resp.username;
 				let role = await resp.roleId;
-				await populateStorage(username, role);
+				let name = await resp.firstName;
+				await populateStorage(username, role, name);
 				// sessionStorage.setItem({ "currentUser": username, "userRole", role });
 				// sessionStorage.setItem("userRole", role);
 				usernameInput.value = '';
@@ -89,9 +90,10 @@
 			}
 		}
 		
-		function populateStorage(username, role) {
+		function populateStorage(username, role, name) {
 			  sessionStorage.setItem("currentUser", username);
 			  sessionStorage.setItem("userRole", role);
+			  sessionStorage.setItem("name", name);
 			}
 		
 	</script>
